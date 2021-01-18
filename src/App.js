@@ -1,3 +1,5 @@
+import { ReactSVG } from 'react-svg';
+
 function App() {
   // window.addEventListener('mouseup', (e) => {
   //   console.log();
@@ -7,15 +9,16 @@ function App() {
 
   //   e.target.style.fill = fill;
   // });
-
-  const nameThing = (id) => {
-    console.log(id);
+  const getState = (e) => {
+    if (e.target.id !== 'svg' && e.target.id !== '') {
+      console.log(e.target.attributes['data-name'].value);
+    }
   };
 
   return (
     <div>
       <p>Hello!</p>
-      <img src="/images/us.svg" alt="us_map"></img>
+      <ReactSVG onClick={getState} src="/images/us.svg" />
     </div>
   );
 }
