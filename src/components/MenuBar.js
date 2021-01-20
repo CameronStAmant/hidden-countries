@@ -5,8 +5,8 @@ const menuBar = () => {
     <div className="menu">
       <div className="navItems">
         <div className="leftNav">Find That State!</div>
-        <div className="centerNav">timer</div>
-        <div className="rightNav">leaderboards</div>
+        <div className="centerNav">Timer</div>
+        <div className="rightNav">Leaderboards</div>
       </div>
     </div>
   );
