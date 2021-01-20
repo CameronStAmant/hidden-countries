@@ -1,0 +1,12 @@
+.mainContent {
+  display: flex;
+}
+
+.map {
+  flex: 2;
+}
+
+.sideMenu {
+  border: 2px solid black;
+  flex: 1;
+}

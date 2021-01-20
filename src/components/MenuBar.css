@@ -14,18 +14,3 @@ body {
   align-items: center;
   justify-content: space-around;
 }
-
-.leftNav {
-  /* text-align: left;
-  flex: 1; */
-}
-
-.centerNav {
-  /* text-align: center;
-  flex: 1; */
-}
-
-.rightNav {
-  /* text-align: right;
-  flex: 1; */
-}
