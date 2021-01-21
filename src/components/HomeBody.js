@@ -3,7 +3,7 @@ import States from './States';
 import Sidebar from './Sidebar';
 
 const HomeBody = () => {
-  const states = ['Delaware', 'Utah', 'Michigan'];
+  const states = ['West Virginia', 'Utah', 'Michigan'];
   return (
     <div className="mainContent">
       <States states={states} />
