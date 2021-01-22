@@ -9,10 +9,22 @@ const States = (props) => {
   const [yLocation, setYLocation] = useState('');
   const [selectedState, setSelectedState] = useState('');
 
+  const unmarkGreen = (state) => {
+    props.markCorrect(state);
+  };
+
+  if (props.mark !== '') {
+    console.log(`in the mark: ${props.mark}`);
+    lastState.target.style.fill = 'green';
+  }
+
   const getState = (selectedState) => {
     if (lastState !== '') {
-      lastState.target.style.fill = '#f9f9f9';
+      if (props.mark == '') {
+        lastState.target.style.fill = '#f9f9f9';
+      }
     }
+    unmarkGreen('');
     setContextClassName('contextMenuHide');
     if (selectedState.target.id !== 'svg' && selectedState.target.id !== '') {
       selectedState.target.style.fill = 'plum';
@@ -23,6 +35,7 @@ const States = (props) => {
       setYLocation(selectedState.pageY);
     }
   };
+  console.log(`in the state: ${props.state}`);
 
   return (
     <div className="map" onClick={getState}>
@@ -31,6 +44,7 @@ const States = (props) => {
         style={[xLocation, yLocation]}
         states={props.states}
         selectedState={selectedState}
+        markCorrect={props.markCorrect}
       />
       <ReactSVG src="/images/us.svg" />
     </div>

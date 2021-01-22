@@ -1,7 +1,33 @@
 import './Sidebar.css';
+import React, { useState } from 'react';
 
 const Sidebar = (props) => {
-  const listStates = props.states.map((state) => <li key={state}>{state}</li>);
+  const [hasClass, setHasClass] = useState([]);
+  console.log('hi');
+
+  const listStates = props.states.map((state) => {
+    if (state === props.mark || hasClass.includes(state)) {
+      if (hasClass.includes(state)) {
+      } else {
+        const addItem = (newItem) => setHasClass((a) => [...a, newItem]);
+        addItem(state);
+      }
+
+      console.log(hasClass);
+      return (
+        <li className="green" key={state}>
+          {state}
+        </li>
+      );
+    } else {
+      return (
+        <li className="d" key={state}>
+          {state}
+        </li>
+      );
+    }
+  });
+
   return (
     <div className="sideMenu">
       <div>

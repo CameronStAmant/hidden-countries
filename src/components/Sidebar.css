@@ -1,3 +1,7 @@
 .hiddenStates {
   list-style: none;
 }
+
+.green {
+  text-decoration: line-through;
+}

@@ -36,8 +36,13 @@ const ContextMenu = (props) => {
         clearTimeout(timerReset);
       };
 
+      const markGreen = (state) => {
+        props.markCorrect(state);
+      };
+
       if (match === true) {
         setCorrectIncorrectState('correctPopup');
+        markGreen(state);
       } else {
         setCorrectIncorrectState('incorrectPopup');
       }
