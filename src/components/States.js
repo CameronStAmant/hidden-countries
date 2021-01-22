@@ -20,19 +20,21 @@ const States = (props) => {
 
   const getState = (selectedState) => {
     if (lastState !== '') {
-      if (props.mark == '') {
+      if (props.mark === '') {
         lastState.target.style.fill = '#f9f9f9';
       }
     }
-    unmarkGreen('');
-    setContextClassName('contextMenuHide');
-    if (selectedState.target.id !== 'svg' && selectedState.target.id !== '') {
-      selectedState.target.style.fill = 'plum';
-      setSelectedState(selectedState);
-      setContextClassName('contextMenuShow');
-      setLastState(selectedState);
-      setXLocation(selectedState.pageX);
-      setYLocation(selectedState.pageY);
+    if (selectedState.target.style.fill !== 'green') {
+      unmarkGreen('');
+      setContextClassName('contextMenuHide');
+      if (selectedState.target.id !== 'svg' && selectedState.target.id !== '') {
+        selectedState.target.style.fill = 'plum';
+        setSelectedState(selectedState);
+        setContextClassName('contextMenuShow');
+        setLastState(selectedState);
+        setXLocation(selectedState.pageX);
+        setYLocation(selectedState.pageY);
+      }
     }
   };
   console.log(`in the state: ${props.state}`);
