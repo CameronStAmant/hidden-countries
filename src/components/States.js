@@ -4,18 +4,20 @@ import ContextMenu from './ContextMenu';
 
 const States = (props) => {
   const [lastState, setLastState] = useState('');
-  const [className, setclassName] = useState('contextMenuHide');
+  const [contextClassName, setContextClassName] = useState('contextMenuHide');
   const [xLocation, setXLocation] = useState('');
   const [yLocation, setYLocation] = useState('');
+  const [selectedState, setSelectedState] = useState('');
 
   const getState = (selectedState) => {
     if (lastState !== '') {
       lastState.target.style.fill = '#f9f9f9';
     }
-    setclassName('contextMenuHide');
+    setContextClassName('contextMenuHide');
     if (selectedState.target.id !== 'svg' && selectedState.target.id !== '') {
       selectedState.target.style.fill = 'plum';
-      setclassName('contextMenuShow');
+      setSelectedState(selectedState);
+      setContextClassName('contextMenuShow');
       setLastState(selectedState);
       setXLocation(selectedState.pageX);
       setYLocation(selectedState.pageY);
@@ -25,9 +27,10 @@ const States = (props) => {
   return (
     <div className="map" onClick={getState}>
       <ContextMenu
-        className={className}
+        className={contextClassName}
         style={[xLocation, yLocation]}
         states={props.states}
+        selectedState={selectedState}
       />
       <ReactSVG src="/images/us.svg" />
     </div>

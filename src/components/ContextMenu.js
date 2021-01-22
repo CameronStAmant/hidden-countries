@@ -1,29 +1,49 @@
 import './ContextMenu.css';
-import firebase from 'firebase';
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyD7dTLx7JubwcrLJcnpZYLLVsYWTU3NR-c',
-  authDomain: 'hidden-countries-ae982.firebaseapp.com',
-  databaseURL: 'https://hidden-countries-ae982-default-rtdb.firebaseio.com',
-  projectId: 'hidden-countries-ae982',
-  storageBucket: 'hidden-countries-ae982.appspot.com',
-  messagingSenderId: '930926072773',
-  appId: '1:930926072773:web:3999af046c3d65045071ac',
-  measurementId: 'G-JZRC1JVJZZ',
-};
-
-firebase.initializeApp(firebaseConfig);
+import { db } from '../services/firebase';
+import React, { useState } from 'react';
+import CorrectIncorrect from './CorrectIncorrectPopup';
 
 const ContextMenu = (props) => {
+  const [correctIncorrectState, setCorrectIncorrectState] = useState(
+    'correctIncorrectHidePopup'
+  );
+  const [timerReset, setTimerReset] = useState(null);
   const chosenState = (state) => {
-    console.log(state);
-    console.log(1);
-    const results = firebase.database().ref();
+    const results = db.ref();
     results.once('value', function (e) {
       let data = e.val();
-      // for (let i in data) {
-      console.log(data);
-      // }
+      let match = false;
+      for (let i = 0; i < Object.keys(data).length; i++) {
+        if (
+          Object.values(data)[i] ===
+            props.selectedState.target.attributes[2].value &&
+          Object.keys(data)[i] === state
+        ) {
+          match = true;
+        }
+      }
+
+      let timer;
+
+      const startTimer = () => {
+        timer = setTimeout(() => {
+          setCorrectIncorrectState('correctIncorrectHidePopup');
+        }, 2000);
+        setTimerReset(timer);
+      };
+
+      const stopTimer = () => {
+        clearTimeout(timerReset);
+      };
+
+      if (match === true) {
+        setCorrectIncorrectState('correctPopup');
+      } else {
+        setCorrectIncorrectState('incorrectPopup');
+      }
+
+      stopTimer();
+      startTimer();
     });
   };
 
@@ -33,11 +53,14 @@ const ContextMenu = (props) => {
     </button>
   ));
   return (
-    <div
-      className={props.className}
-      style={{ left: props.style[0] + 15, top: props.style[1] + 15 }}
-    >
-      {listStates}
+    <div>
+      <CorrectIncorrect className={correctIncorrectState} />
+      <div
+        className={props.className}
+        style={{ left: props.style[0] + 15, top: props.style[1] + 15 }}
+      >
+        {listStates}
+      </div>
     </div>
   );
 };
