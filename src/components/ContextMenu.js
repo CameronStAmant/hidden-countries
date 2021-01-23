@@ -9,7 +9,7 @@ const ContextMenu = (props) => {
   );
   const [timerReset, setTimerReset] = useState(null);
   const chosenState = (state) => {
-    const results = db.ref();
+    const results = db.ref().child('States');
     results.once('value', function (e) {
       let data = e.val();
       let match = false;
