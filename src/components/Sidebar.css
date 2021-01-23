@@ -5,3 +5,31 @@
 .green {
   text-decoration: line-through;
 }
+
+.sideMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+div {
+  flex: 1;
+}
+
+.leaderboard {
+  /* display: flex;
+  flex-direction: row; */
+}
+
+.highScores {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.leftScores {
+}
+
+.rightScores {
+}
