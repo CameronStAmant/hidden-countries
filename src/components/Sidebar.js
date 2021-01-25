@@ -29,35 +29,43 @@ const Sidebar = (props) => {
     props.markCounter(hasClass.length);
   }, [props, hasClass]);
 
-  let leaderboardArray = [];
+  let leaderboardObjects = [];
 
   const getTheData = () => {
-    const leaderboard = db.ref().child('Leaderboard');
+    const leaderboard = db
+      .ref()
+      .child('Leaderboard')
+      .orderByChild('score')
+      .limitToLast(10);
     leaderboard.off();
+
     if (leaderboardListLeft === '') {
+      let data = [];
       leaderboard.on('value', (snapshot) => {
-        let data = snapshot.val();
+        snapshot.forEach(function (child) {
+          data.push(child.val());
+        });
         if (data !== null) {
           let counter = 0;
-          leaderboardArray = data.map((x) => {
+          leaderboardObjects = data.map((x) => {
             counter += 1;
             return (
               <div>
-                {counter}) {x}
+                {counter}) {x.score}: {x.name}
               </div>
             );
           });
-          while (leaderboardArray.length !== 10) {
-            let leaderboardArrayLength = leaderboardArray.length;
-            leaderboardArray.push('');
-            leaderboardArray.fill(
-              <div>{leaderboardArray.length})</div>,
-              leaderboardArrayLength,
+          while (leaderboardObjects.length !== 10) {
+            let leaderboardObjectsLength = leaderboardObjects.length;
+            leaderboardObjects.push('');
+            leaderboardObjects.fill(
+              <div>{leaderboardObjects.length})</div>,
+              leaderboardObjectsLength,
               11
             );
           }
-          setLeaderboardListLeft(leaderboardArray.slice(0, 5));
-          setLeaderboardListRight(leaderboardArray.slice(5, 10));
+          setLeaderboardListLeft(leaderboardObjects.slice(0, 5));
+          setLeaderboardListRight(leaderboardObjects.slice(5, 10));
         }
       });
     }

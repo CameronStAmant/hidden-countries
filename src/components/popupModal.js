@@ -14,9 +14,7 @@ const finishModal = (props) => {
     });
   };
 
-  const handleChange = (event) => {
-    console.log(event);
-  };
+  const handleChange = (event) => {};
 
   return (
     <div className="showFinish">
