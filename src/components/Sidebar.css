@@ -17,19 +17,16 @@ div {
   flex: 1;
 }
 
-.leaderboard {
-  /* display: flex;
-  flex-direction: row; */
-}
-
 .highScores {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 }
 
 .leftScores {
+  text-align: left;
 }
 
 .rightScores {
+  text-align: left;
 }

@@ -37,7 +37,6 @@ const States = (props) => {
       }
     }
   };
-  console.log(`in the state: ${props.state}`);
 
   return (
     <div className="map" onClick={getState}>

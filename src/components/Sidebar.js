@@ -1,9 +1,11 @@
 import './Sidebar.css';
 import React, { useState } from 'react';
+import { db } from '../services/firebase';
 
 const Sidebar = (props) => {
   const [hasClass, setHasClass] = useState([]);
-  console.log('hi');
+  const [leaderboardListLeft, setLeaderboardListLeft] = useState('');
+  const [leaderboardListRight, setLeaderboardListRight] = useState('');
 
   const listStates = props.states.map((state) => {
     if (state === props.mark || hasClass.includes(state)) {
@@ -13,7 +15,6 @@ const Sidebar = (props) => {
         addItem(state);
       }
 
-      console.log(hasClass);
       return (
         <li className="green" key={state}>
           {state}
@@ -27,6 +28,41 @@ const Sidebar = (props) => {
       );
     }
   });
+  let leaderboardArray = [];
+
+  const getTheData = () => {
+    const leaderboard = db.ref().child('Leaderboard');
+    leaderboard.off();
+    if (leaderboardListLeft === '') {
+      leaderboard.on('value', (snapshot) => {
+        let data = snapshot.val();
+        if (data !== null) {
+          let counter = 0;
+          leaderboardArray = data.map((x) => {
+            counter += 1;
+            return (
+              <div>
+                {counter}) {x}
+              </div>
+            );
+          });
+          while (leaderboardArray.length !== 10) {
+            let leaderboardArrayLength = leaderboardArray.length;
+            leaderboardArray.push('');
+            leaderboardArray.fill(
+              <div>{leaderboardArray.length})</div>,
+              leaderboardArrayLength,
+              11
+            );
+          }
+          setLeaderboardListLeft(leaderboardArray.slice(0, 5));
+          setLeaderboardListRight(leaderboardArray.slice(5, 10));
+        }
+      });
+    }
+  };
+
+  getTheData();
 
   return (
     <div className="sideMenu">
@@ -40,20 +76,8 @@ const Sidebar = (props) => {
       <div className="leaderboard">
         Leaderboards
         <div className="highScores">
-          <div className="leftScores">
-            <div>1)</div>
-            <div>2)</div>
-            <div>3)</div>
-            <div>4)</div>
-            <div>5)</div>
-          </div>
-          <div className="rightScores">
-            <div>6)</div>
-            <div>7)</div>
-            <div>8)</div>
-            <div>9)</div>
-            <div>10)</div>
-          </div>
+          <div className="leftScores">{leaderboardListLeft}</div>
+          <div className="rightScores">{leaderboardListRight}</div>
         </div>
       </div>
     </div>
