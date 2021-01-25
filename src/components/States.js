@@ -14,7 +14,6 @@ const States = (props) => {
   };
 
   if (props.mark !== '') {
-    console.log(`in the mark: ${props.mark}`);
     lastState.target.style.fill = 'green';
   }
 
@@ -46,6 +45,7 @@ const States = (props) => {
         states={props.states}
         selectedState={selectedState}
         markCorrect={props.markCorrect}
+        finishClassName={props.showFinish}
       />
       <ReactSVG src="/images/us.svg" />
     </div>

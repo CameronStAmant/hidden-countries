@@ -2,6 +2,7 @@ import './ContextMenu.css';
 import { db } from '../services/firebase';
 import React, { useState } from 'react';
 import CorrectIncorrect from './CorrectIncorrectPopup';
+import FinishModal from './popupModal';
 
 const ContextMenu = (props) => {
   const [correctIncorrectState, setCorrectIncorrectState] = useState(
@@ -66,6 +67,7 @@ const ContextMenu = (props) => {
       >
         {listStates}
       </div>
+      <FinishModal className={props.finishClassName} />
     </div>
   );
 };

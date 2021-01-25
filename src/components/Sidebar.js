@@ -1,5 +1,5 @@
 import './Sidebar.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { db } from '../services/firebase';
 
 const Sidebar = (props) => {
@@ -21,13 +21,14 @@ const Sidebar = (props) => {
         </li>
       );
     } else {
-      return (
-        <li className="d" key={state}>
-          {state}
-        </li>
-      );
+      return <li key={state}>{state}</li>;
     }
   });
+
+  useEffect(() => {
+    props.markCounter(hasClass.length);
+  }, [props, hasClass]);
+
   let leaderboardArray = [];
 
   const getTheData = () => {
