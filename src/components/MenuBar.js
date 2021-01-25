@@ -1,11 +1,11 @@
 import './MenuBar.css';
 
-const menuBar = () => {
+const menuBar = (props) => {
   return (
     <div className="menu">
       <div className="navItems">
         <div>Find That State!</div>
-        <div>Timer</div>
+        <div>{props.time}</div>
       </div>
     </div>
   );
