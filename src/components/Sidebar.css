@@ -1,5 +1,6 @@
 .hiddenStates {
-  list-style: none;
+  /* list-style: none; */
+  text-align: left;
 }
 
 .green {
@@ -8,7 +9,7 @@
 
 .sideMenu {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   text-align: center;
 }
@@ -20,7 +21,6 @@ div {
 .highScores {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-around; */
 }
 
 .leftScores {
@@ -29,4 +29,15 @@ div {
 
 .rightScores {
   text-align: left;
+}
+
+.description {
+  text-align: center;
+  border: 2px solid black;
+}
+
+.leaderboard {
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
 }

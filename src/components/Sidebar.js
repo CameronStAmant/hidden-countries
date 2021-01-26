@@ -82,9 +82,9 @@ const Sidebar = (props) => {
     <div className="sideMenu">
       <div className="description">
         <div>
-          Find the states below by clicking on a state and choosing its name
-          from the list that appears. Once you finish, add your name to the
-          leaderboards!
+          Find the states below by clicking on a state on the map and choosing
+          its name from the list that appears. Once you finish, add your name to
+          the leaderboards!
         </div>
         <ul className="hiddenStates">{listStates}</ul>
       </div>
