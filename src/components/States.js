@@ -19,7 +19,7 @@ const States = (props) => {
 
   const getState = (selectedState) => {
     if (lastState !== '') {
-      if (props.mark === '') {
+      if (props.mark === '' && props.hideFinish === 'hideFinished') {
         lastState.target.style.fill = '#f9f9f9';
       }
     }
