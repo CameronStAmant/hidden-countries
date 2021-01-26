@@ -50,7 +50,7 @@ const Sidebar = (props) => {
               </div>
             );
           });
-          while (leaderboardObjects.length !== 10) {
+          while (leaderboardObjects.length <= 10) {
             let leaderboardObjectsLength = leaderboardObjects.length;
             leaderboardObjects.push('');
             leaderboardObjects.fill(
