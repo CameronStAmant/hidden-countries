@@ -3,13 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../services/firebase';
 
 const Sidebar = (props) => {
-  console.log('in the sidebar');
   const [hasClass, setHasClass] = useState([]);
   const [leaderboardListLeft, setLeaderboardListLeft] = useState('');
   const [leaderboardListRight, setLeaderboardListRight] = useState('');
   const [reset, setReset] = useState(false);
 
-  const listStates = props.states.map((state) => {
+  const listStates = props.states.map((state, index) => {
     if (state === props.mark || hasClass.includes(state)) {
       if (hasClass.includes(state)) {
       } else {
@@ -42,10 +41,10 @@ const Sidebar = (props) => {
 
         if (data !== null) {
           let counter = 0;
-          leaderboardObjects = data.map((x) => {
+          leaderboardObjects = data.map((x, index) => {
             counter += 1;
             return (
-              <div>
+              <div key={index}>
                 {counter}) {x.score}: {x.name}
               </div>
             );
@@ -54,7 +53,9 @@ const Sidebar = (props) => {
             let leaderboardObjectsLength = leaderboardObjects.length;
             leaderboardObjects.push('');
             leaderboardObjects.fill(
-              <div>{leaderboardObjects.length})</div>,
+              <div key={leaderboardObjects.length}>
+                {leaderboardObjects.length})
+              </div>,
               leaderboardObjectsLength,
               11
             );

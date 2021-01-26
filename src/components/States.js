@@ -54,7 +54,9 @@ const States = (props) => {
         updateLeaderboard={props.updateLeaderboard}
         hideFinish={props.hideFinish}
       />
-      <ReactSVG src="/images/us.svg" />
+      <div>
+        <ReactSVG src="/images/usa.svg" />
+      </div>
     </div>
   );
 };
