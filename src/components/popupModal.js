@@ -6,13 +6,27 @@ const finishModal = (props) => {
     event.preventDefault();
     const leaderboard = db.ref().child('Leaderboard');
     let data;
-    leaderboard.once('value', (snapshot) => {
+
+    leaderboard.on('value', (snapshot) => {
       data = snapshot.val();
-      leaderboard.child(`${data.length}`).update({
+    });
+    console.log('in the snapshot 2');
+    leaderboard.off();
+    leaderboard.child(`${data.length}`).set(
+      {
         name: event.target.name.value,
         score: props.time,
-      });
-    });
+      },
+      (error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('done!');
+        }
+      }
+    );
+    console.log('in the snapshot 3');
+    console.log('in the submit');
     props.updateLeaderboard();
     props.hideFinish();
   };

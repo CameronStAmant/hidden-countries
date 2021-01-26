@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../services/firebase';
 
 const Sidebar = (props) => {
+  console.log('in the sidebar');
   const [hasClass, setHasClass] = useState([]);
   const [leaderboardListLeft, setLeaderboardListLeft] = useState('');
   const [leaderboardListRight, setLeaderboardListRight] = useState('');
