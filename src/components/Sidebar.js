@@ -30,7 +30,6 @@ const Sidebar = (props) => {
     let data = [];
     let leaderboardObjects = [];
     let leaderboard = db.ref().child('Leaderboard').orderByChild('score');
-    // leaderboard.off();
 
     if (leaderboardListLeft === '' || state === 'update') {
       data = [];
