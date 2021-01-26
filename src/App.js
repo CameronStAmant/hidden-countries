@@ -4,20 +4,32 @@ import React, { useState, useEffect } from 'react';
 
 function App() {
   const [time, setTime] = useState(0);
+  const [isActive, setIsActive] = useState(true);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(time + 1);
-    }, 1000);
-    return () => {
-      clearInterval(timer);
-    };
-  }, [time]);
+    if (isActive) {
+      let timer;
+      if (isActive) {
+        timer = setInterval(() => {
+          setTime(time + 1);
+        }, 1000);
+      } else {
+        clearInterval(timer);
+      }
+      return () => {
+        clearInterval(timer);
+      };
+    }
+  }, [isActive, time]);
 
   return (
     <div>
       <MenuBar time={time} />
-      <HomeBody />
+      <HomeBody
+        pause={() => setIsActive(false)}
+        time={time}
+        timer={(state) => setTime(state)}
+      />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import States from './States';
 import Sidebar from './Sidebar';
 import React, { useState } from 'react';
 
-const HomeBody = () => {
+const HomeBody = (props) => {
   const [color, setColor] = useState('');
   const states = ['West Virginia', 'Utah', 'Michigan'];
   const [foundCounter, setFoundCounter] = useState(0);
@@ -18,6 +18,8 @@ const HomeBody = () => {
 
     if (foundCounter === states.length) {
       setShowFinishModal('showFinished');
+      props.pause();
+      props.timer(props.time);
     }
   };
 
