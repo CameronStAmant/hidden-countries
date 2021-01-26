@@ -13,6 +13,7 @@ const finishModal = (props) => {
         score: props.time,
       });
     });
+    props.updateLeaderboard();
   };
 
   const handleChange = (event) => {};

@@ -47,6 +47,7 @@ const States = (props) => {
         markCorrect={props.markCorrect}
         finishClassName={props.showFinish}
         time={props.time}
+        updateLeaderboard={props.updateLeaderboard}
       />
       <ReactSVG src="/images/us.svg" />
     </div>

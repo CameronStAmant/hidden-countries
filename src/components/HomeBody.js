@@ -8,6 +8,7 @@ const HomeBody = (props) => {
   const states = ['West Virginia', 'Utah', 'Michigan'];
   const [foundCounter, setFoundCounter] = useState(0);
   const [showFinishModal, setShowFinishModal] = useState('hideFinished');
+  const [updateLeaderboard, setUpdateLeaderboard] = useState(false);
 
   const colorCorrect = (state) => {
     setColor(state);
@@ -31,11 +32,14 @@ const HomeBody = (props) => {
         mark={color}
         showFinish={showFinishModal}
         time={props.time}
+        updateLeaderboard={() => setUpdateLeaderboard(true)}
       />
       <Sidebar
         states={states}
         mark={color}
         markCounter={(number) => count1(number)}
+        showFinish={showFinishModal}
+        updateLeaderboard={updateLeaderboard}
       />
     </div>
   );

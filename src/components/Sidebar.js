@@ -6,6 +6,7 @@ const Sidebar = (props) => {
   const [hasClass, setHasClass] = useState([]);
   const [leaderboardListLeft, setLeaderboardListLeft] = useState('');
   const [leaderboardListRight, setLeaderboardListRight] = useState('');
+  const [reset, setReset] = useState(false);
 
   const listStates = props.states.map((state) => {
     if (state === props.mark || hasClass.includes(state)) {
@@ -25,26 +26,19 @@ const Sidebar = (props) => {
     }
   });
 
-  useEffect(() => {
-    props.markCounter(hasClass.length);
-  }, [props, hasClass]);
+  const getTheData = (state) => {
+    let data = [];
+    let leaderboardObjects = [];
+    let leaderboard = db.ref().child('Leaderboard').orderByChild('score');
+    // leaderboard.off();
 
-  let leaderboardObjects = [];
-
-  const getTheData = () => {
-    const leaderboard = db
-      .ref()
-      .child('Leaderboard')
-      .orderByChild('score')
-      .limitToLast(10);
-    leaderboard.off();
-
-    if (leaderboardListLeft === '') {
-      let data = [];
+    if (leaderboardListLeft === '' || state === 'update') {
+      data = [];
       leaderboard.on('value', (snapshot) => {
         snapshot.forEach(function (child) {
           data.push(child.val());
         });
+
         if (data !== null) {
           let counter = 0;
           leaderboardObjects = data.map((x) => {
@@ -72,6 +66,15 @@ const Sidebar = (props) => {
   };
 
   getTheData();
+
+  useEffect(() => {
+    props.markCounter(hasClass.length);
+  });
+
+  if (props.updateLeaderboard === true && reset === false) {
+    getTheData('update');
+    setReset(true);
+  }
 
   return (
     <div className="sideMenu">

@@ -67,7 +67,11 @@ const ContextMenu = (props) => {
       >
         {listStates}
       </div>
-      <FinishModal className={props.finishClassName} time={props.time} />
+      <FinishModal
+        className={props.finishClassName}
+        time={props.time}
+        updateLeaderboard={props.updateLeaderboard}
+      />
     </div>
   );
 };
