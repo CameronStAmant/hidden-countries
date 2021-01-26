@@ -10,6 +10,7 @@ const finishModal = (props) => {
       data = snapshot.val();
       leaderboard.child(`${data.length}`).update({
         name: event.target.name.value,
+        score: props.time,
       });
     });
   };
