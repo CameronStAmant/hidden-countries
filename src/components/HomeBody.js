@@ -17,7 +17,7 @@ const HomeBody = (props) => {
   const count1 = (number) => {
     setFoundCounter(number);
 
-    if (foundCounter === states.length) {
+    if (foundCounter === states.length && updateLeaderboard === false) {
       setShowFinishModal('showFinished');
       props.pause();
       props.timer(props.time);
@@ -33,6 +33,7 @@ const HomeBody = (props) => {
         showFinish={showFinishModal}
         time={props.time}
         updateLeaderboard={() => setUpdateLeaderboard(true)}
+        hideFinish={() => setShowFinishModal('hideFinished')}
       />
       <Sidebar
         states={states}

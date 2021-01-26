@@ -71,6 +71,7 @@ const ContextMenu = (props) => {
         className={props.finishClassName}
         time={props.time}
         updateLeaderboard={props.updateLeaderboard}
+        hideFinish={props.hideFinish}
       />
     </div>
   );

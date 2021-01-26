@@ -14,6 +14,7 @@ const finishModal = (props) => {
       });
     });
     props.updateLeaderboard();
+    props.hideFinish();
   };
 
   const handleChange = (event) => {};

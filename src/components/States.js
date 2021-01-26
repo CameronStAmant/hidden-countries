@@ -48,6 +48,7 @@ const States = (props) => {
         finishClassName={props.showFinish}
         time={props.time}
         updateLeaderboard={props.updateLeaderboard}
+        hideFinish={props.hideFinish}
       />
       <ReactSVG src="/images/us.svg" />
     </div>
