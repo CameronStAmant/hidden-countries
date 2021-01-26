@@ -5,7 +5,7 @@ const menuBar = (props) => {
     <div className="menu">
       <div className="navItems">
         <div>Find That State!</div>
-        <div>{props.time}</div>
+        <div>Score: {props.time}</div>
       </div>
     </div>
   );
