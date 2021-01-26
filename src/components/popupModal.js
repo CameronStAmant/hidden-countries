@@ -17,8 +17,8 @@ const finishModal = (props) => {
   const handleChange = (event) => {};
 
   return (
-    <div className="showFinish">
-      <div>Add your name to the leaderboards!</div>
+    <div className={props.className}>
+      <div>Your score was {props.time}. Add your name to the leaderboards!</div>
       <form onSubmit={(event) => handleSubmit(event)}>
         <label>
           Name:

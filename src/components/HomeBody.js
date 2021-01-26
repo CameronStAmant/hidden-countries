@@ -30,6 +30,7 @@ const HomeBody = (props) => {
         markCorrect={(state) => colorCorrect(state)}
         mark={color}
         showFinish={showFinishModal}
+        time={props.time}
       />
       <Sidebar
         states={states}
