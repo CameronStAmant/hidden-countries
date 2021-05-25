@@ -1,4 +1,4 @@
-# Hidden-countries
+# Hidden-states
 
 A game to test your knowledge of where specific States are, within the United States. The faster you find them, the lower and better, your score.
 
